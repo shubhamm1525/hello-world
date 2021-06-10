@@ -1,1 +1,25 @@
+//Fetching the Values of Selected values from the Multiselect Picklist ( lightning:dualListbox )
+//The Returned result is an Object type, so to check the values and perform conditional action we can check the values using below code.
 
+<b>Syntax</b> :   Object.values(yourObjectVariable).includes(valueToCheck)
+
+ var field = component.get("v.selectedCadSystem");
+                
+                if(field != null){
+                    //checking if desired value is selected then showing the dependent input field based on the value
+                    if (Object.values(field).includes('foo') || Object.values(field).includes('bar')) {
+                        component.set("v.myBoolean", true);
+                        if(Result.PSO1.rating__c == 'High'){
+                            component.set("v.showLicense", true);
+                            //do your operation
+                        }else{
+                            component.set("v.showLicense", false);
+                             //do your operation
+                        }
+                    }else{
+                        component.set("v.myBoolean", false);
+                        component.set("v.myBoolean3", false);
+                    }
+                }
+                
+ <b>NOTE</b> : Attribute values are for example purpose.
