@@ -1,0 +1,34 @@
+ //When we need to check the value of the Obejct property we can use the ObjectName.forEach((element, index) => {}) 
+ // method to check the value and perform conditional changes.
+ 
+ 
+        var FileData  = [];
+              
+              if(Result.RelatedPsoFiles != null && Result.RelatedPsoFiles.length > 0){
+                  FileData = Result.RelatedPsoFiles;
+              }
+
+              if(FileData != null && FileData.length > 0 ){
+                  //if file are uploaded, based on their input label ,assigning the ContentDocumentId to respective filename var,
+                   
+                  FileData.forEach((file,index) => {
+                       
+                      var title = file.Title;
+                      var ContentDocumentId = file.ContentDocumentId.substring(0,15);
+
+                      if( title.includes("Accounts File")){
+                      component.set("v.IfLoadBudget", true);
+                      component.set("v.fileName3", title);
+                      component.set("v.AccountsFileID", ContentDocumentId);
+                  }else if(title.includes("Certificate of Insurance")){
+                      component.set("v.fileName", title);
+                      component.set("v.CertificateInsuranceID", ContentDocumentId);
+                  }else if(title.includes("Incorporation Document")){
+                      component.set("v.fileName2", title);
+                      component.set("v.IncorporationDocumentID", ContentDocumentId);
+                  }
+              })
+          }
+          
+   NOTE : Using above method of iteration we can check value of object property easily.
+ 
